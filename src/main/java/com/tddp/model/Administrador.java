@@ -10,13 +10,13 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "tbl_user")
+@Table(name = "tbl_administrador")
 @Entity
-public class User {
+public class Administrador {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long id;
+    private Long administrador_id;
     private String username;
     private String password;
     @Transient

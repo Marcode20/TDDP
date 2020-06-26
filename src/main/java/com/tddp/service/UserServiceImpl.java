@@ -2,7 +2,7 @@ package com.tddp.service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.tddp.model.User;
+import com.tddp.model.Administrador;
 import com.tddp.repository.RoleRepository;
 import com.tddp.repository.UserRepository;
 
@@ -22,15 +22,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(User user) {
-        String passwordEncode = bCryptPasswordEncoder.encode(user.getPassword());
-        user.setPassword(passwordEncode);
-        user.setRoles(new HashSet<>(roleRepository.findAll())); //TODO pending to review
-        userRepository.save(user);
+    public void save(Administrador administrador) {
+        String passwordEncode = bCryptPasswordEncoder.encode(administrador.getPassword());
+        administrador.setPassword(passwordEncode);
+        administrador.setRoles(new HashSet<>(roleRepository.findAll())); //TODO pending to review
+        userRepository.save(administrador);
     }
 
     @Override
-    public User findByUsername(String username) {
+    public Administrador findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 }

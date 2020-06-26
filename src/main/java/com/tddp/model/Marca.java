@@ -3,31 +3,25 @@ package com.tddp.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "tbl_producto")
+@Table(name = "tbl_marca")
 @Entity
-public class Producto {
+public class Marca {
 
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
     )
-    private Integer producto_id;
+    private Integer marca_id;
     @Column
     private String nombres;
     @Column
-    private Double precio;
-    @Column
     private String descripcion;
-    @Column
-    private Integer stock;
+
 
 }
