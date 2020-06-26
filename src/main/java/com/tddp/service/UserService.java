@@ -1,11 +1,11 @@
 package com.tddp.service;
 
-import com.tddp.model.Administrador;
+import com.tddp.model.User;
 
 public interface UserService {
 
-    void save(Administrador administrador);
+    void save(User user);
 
-    Administrador findByUsername(String username);
+    User findByUsername(String username);
 
 }

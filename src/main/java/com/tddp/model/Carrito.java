@@ -22,9 +22,7 @@ public class Carrito {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime fechaCreacion;
 
-    @OneToOne
-    @JoinColumn(name = "idOrderCompra")
-    private OrdenCompra ordenCompra = new OrdenCompra();
+
 
 
 }

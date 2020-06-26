@@ -31,9 +31,6 @@ public class Categoria {
     @Column(nullable = false)
     private Status status;
 
-    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("categoria")
-    private Set<Producto> subcategoryGlobals = new HashSet<>();
 }
 
 

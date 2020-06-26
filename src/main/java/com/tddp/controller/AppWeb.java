@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.tddp.model.Administrador;
+import com.tddp.model.User;
 import com.tddp.service.SecurityService;
 import com.tddp.service.UserService;
 
@@ -50,15 +50,15 @@ public class AppWeb {
     // desde el link de Login
     @GetMapping("/registration")
     private String registration(Model model){
-        model.addAttribute("user", new Administrador());
+        model.addAttribute("user", new User());
         return "registration";
     }
 
     @PostMapping("/registration")
-    private String registration(Administrador administrador){
-        userService.save(administrador);
+    private String registration(User user){
+        userService.save(user);
         //autologin
-        securityService.autoLogin(administrador.getUsername(), administrador.getPasswordConfirm());
+        securityService.autoLogin(user.getUsername(), user.getPasswordConfirm());
 
         return "redirect:/menu";
     }

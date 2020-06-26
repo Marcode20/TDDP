@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.tddp.model.Role;
-import com.tddp.model.Administrador;
+import com.tddp.model.User;
 import com.tddp.repository.UserRepository;
 
 import java.util.HashSet;
@@ -27,17 +27,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional(readOnly=true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Administrador currentAdministrador = userRepository.findByUsername(username);
-        if(currentAdministrador == null){
+        User currentUser = userRepository.findByUsername(username);
+        if(currentUser == null){
             throw new UsernameNotFoundException(username);
         }
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for (Role role : currentAdministrador.getRoles()){
+        for (Role role : currentUser.getRoles()){
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
 
         return new org.springframework.security.core.userdetails.
-                User(currentAdministrador.getUsername(), currentAdministrador.getPassword(), grantedAuthorities);
+                User(currentUser.getUsername(), currentUser.getPassword(), grantedAuthorities);
     }
 }

@@ -2,11 +2,11 @@ package com.tddp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.tddp.model.Administrador;
+import com.tddp.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<Administrador, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    Administrador findByUsername(String username);
+    User findByUsername(String username);
 
 }

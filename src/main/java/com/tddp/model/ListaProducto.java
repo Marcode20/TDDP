@@ -44,10 +44,6 @@ public class ListaProducto {
     @Column(nullable = false)
     private boolean registrationStatus;
 
-    @ManyToOne
-    @JoinColumn(name = "idUser")
-    @JsonIgnoreProperties({"lists", "employees", "stores"})
-    private Administrador administrador;
 
 
 }

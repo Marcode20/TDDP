@@ -27,8 +27,6 @@ public class OrdenCompra {
     @Column
     private Double total;
 
-    @OneToOne
-    @JoinColumn(name = "idOrderCompra")
-    private Carrito carrito = new Carrito();
+
 
 }

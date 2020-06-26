@@ -12,11 +12,11 @@ import java.util.Set;
 @Data
 @Table(name = "tbl_administrador")
 @Entity
-public class Administrador {
+public class User {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long administrador_id;
+    private Long id;
     private String username;
     private String password;
     @Transient
