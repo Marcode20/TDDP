@@ -83,14 +83,11 @@ public class ProductController {
             String imageURL = awss3Service.uploadObject(file, s3ObjectName);
             producto.setProductImageURL(imageURL);
             ProductoService.createProducto(producto);
-
         }
         catch (IOException ex){
             ex.printStackTrace();
         }
-
         return "redirect:/producto";
-
     }
 
 
