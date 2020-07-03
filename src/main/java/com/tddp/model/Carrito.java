@@ -1,28 +1,32 @@
 package com.tddp.model;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import org.apache.tomcat.jni.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-@Table(name = "tb_carrito")
 @Entity
+@Table(name = "tbl_carrito")
 public class Carrito {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int carrito_id;
+    private Integer carrito_id;
 
     @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime fechaCreacion;
+    private LocalDateTime date;
 
-
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "orden_compra_id")
+    private OrdenCompra ordenCompra;
 
 }

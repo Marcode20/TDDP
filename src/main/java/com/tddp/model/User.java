@@ -10,7 +10,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "tbl_administrador")
+@Table(name = "tbl_user")
 @Entity
 public class User {
 

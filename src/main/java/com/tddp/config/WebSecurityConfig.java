@@ -41,23 +41,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        String[] staticResources  =  {
-                "/assets/**",
-                "/css/**",
-                "/images/**",
-                "/js/**",
-                "/h2-console/**",
-                "/registration"
-        };
-
         http.authorizeRequests()
-                .antMatchers(staticResources).permitAll()
+                .antMatchers("/h2-console/**", "/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/asd").permitAll()
-                .defaultSuccessUrl("/asda")
-                .failureForwardUrl("/asd?error=true")
+                .loginPage("/login").permitAll()
+                .defaultSuccessUrl("/menu")
+                .failureForwardUrl("/login?error=true")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and()

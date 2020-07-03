@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,17 +19,27 @@ import java.util.Set;
 public class Producto {
 
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer producto_id;
     @Column
-    private String nombres;
+    private String nombre;
     @Column
     private Double precio;
     @Column
-    private String descripcion;
+    private String  descripcion;
     @Column
     private Integer stock;
+    @Column
+    private String productImageURL;
+    @Transient
+    private MultipartFile imageMultipartFile;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "marca_id")
+    private Marca marca;
 
 }

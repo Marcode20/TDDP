@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,14 +15,15 @@ import javax.persistence.*;
 public class Marca {
 
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer marca_id;
     @Column
     private String nombres;
     @Column
     private String descripcion;
+
+    @OneToMany(mappedBy = "marca")
+    private List<Producto> productos;
 
 
 

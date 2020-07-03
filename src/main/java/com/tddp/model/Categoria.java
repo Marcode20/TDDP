@@ -1,35 +1,31 @@
 package com.tddp.model;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.tddp.model.Producto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
-@DynamicUpdate
-@Table(name = "tb_categoria")
+@Table(name = "tbl_categoria")
 public class Categoria {
 
-    public enum Status { Pendiente, Aceptado, Rechazado }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int categoria_id;
 
-    @Column(nullable = false)
+    @Column
     private String nombre;
 
-    @Column(nullable = false)
-    private Status status;
+    @Column
+    private String estado;
+
+    @OneToMany(mappedBy = "categoria")
+    private List<Producto> productos;
 
 }
 

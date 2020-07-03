@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class ProductoServiceImp implements ProductoService{
+public class ProductoServiceImpl implements ProductoService{
 
     @Autowired
     ProductoRepository productoRepository;

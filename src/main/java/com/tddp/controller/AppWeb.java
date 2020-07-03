@@ -26,12 +26,11 @@ public class AppWeb {
         this.securityService = securityService;
     }
 
+
     @GetMapping(value = {"/login"})
     private String index(){
         return "login";
     }
-
-
 
     @GetMapping("/menu")
     private String menu(){
@@ -61,32 +60,6 @@ public class AppWeb {
         securityService.autoLogin(user.getUsername(), user.getPasswordConfirm());
 
         return "redirect:/menu";
-    }
-    @RequestMapping("/para")
-    public String paradero(Model model){
-        model.addAttribute("para");
-        return "paradero";
-    }
-
-    @RequestMapping("/cont")
-    public String contactanos(Model model){
-        model.addAttribute("cont");
-        return "contactanos";
-    }
-    @RequestMapping("/consult")
-    public String consultas(Model model){
-        model.addAttribute("consult");
-        return "consultas";
-    }
-    @RequestMapping("/menuadmins")
-    public String menuadmin(Model model){
-        model.addAttribute("menuadmins");
-        return "menuadmin";
-    }
-    @RequestMapping("/mans")
-    public String menPrincipal(Model model){
-        model.addAttribute("mans");
-        return "man_principal";
     }
 
 }
