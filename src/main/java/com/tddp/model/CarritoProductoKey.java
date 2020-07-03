@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Embeddable
 @Data
 public class CarritoProductoKey implements Serializable {
+
     @Column(name = "carrito_id")
     private Integer  carritoId;
 
