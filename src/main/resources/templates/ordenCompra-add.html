@@ -28,11 +28,11 @@
                 <td>Carrito:</td>
                 <td>
 
-<!--                    <select th:field="*{carrito}">-->
-<!--                    <option th:each="dropDownItem : ${institutionList}"-->
-<!--                            th:value="${dropDownItem.name}"-->
-<!--                            th:text="${dropDownItem.name}" />-->
-<!--                    </select>-->
+                    <select th:field="*{carrito}">
+                    <option th:each="carrito : ${listaCarritos}"
+                            th:value="${carrito.getCarrito_id()}"
+                            th:text="${carrito.getCarrito_id()}" />
+                    </select>
                 </td>
             </tr>
             <tr>
