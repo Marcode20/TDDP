@@ -76,12 +76,12 @@ public class ProductController {
         try {
             String formatedUniqueImageName = awss3Service.setUniqueFileName(multipartfile.getOriginalFilename());
             System.out.println("name : " + formatedUniqueImageName);
-            producto.setImageName(multipartfile.getOriginalFilename());
+            producto.setImageName(formatedUniqueImageName);
             String s3ObjectName = "productos/" + formatedUniqueImageName;
             File file = awss3Service.convertToFile(multipartfile, s3ObjectName);
             System.out.println("s3ObjectName : " + s3ObjectName);
             String imageURL = awss3Service.uploadObject(file, s3ObjectName);
-            producto.setProductImageURL(formatedUniqueImageName);
+            producto.setProductImageURL(imageURL);
             ProductoService.createProducto(producto);
 
         }

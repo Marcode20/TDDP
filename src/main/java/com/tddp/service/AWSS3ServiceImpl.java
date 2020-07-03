@@ -66,7 +66,7 @@ public class AWSS3ServiceImpl implements AWSS3Service {
     public String uploadObject( File file, String s3ObjectName){
         this.amazonS3.putObject(BUCKET_NAME,  s3ObjectName, file);
         System.out.println("Se ha subido el archivo");
-        String imageURL = "https://" + BUCKET_NAME + "s3." + region + ".amazonaws.com/" + file.getName();
+        String imageURL = "https://" + BUCKET_NAME + ".s3." + region + ".amazonaws.com/" + file.getName();
         return imageURL;
     }
 
