@@ -7,10 +7,42 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="css/style.css">
     <title>Registation</title>
 </head>
 <body class="text-center">
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <img src="images/logotienda.png" width="130" height="80" th:href="@{/indexs}">
+    <div class="container">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a th:href="@{/indexs}" class="nav-link">Home</a></li>
+                <li class="nav-item active"><a th:href="@{/shops}" class="nav-link">Cuidado del Hogar</a></li>
+                <li class="nav-item active"><a th:href="@{/shops}" class="nav-link">Cuidado del Bebe </a></li>
+                <li class="nav-item active"><a th:href="@{/abouts}" class="nav-link">Acerca</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ayuda</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        <a class="dropdown-item" th:href="@{/shops}">Tienda</a>
+                        <a class="dropdown-item" th:href="@{/wishlists}">Listado</a>
+                        <a class="dropdown-item" th:href="@{/prodsingles}">Producto Unico</a>
+                        <a class="dropdown-item" th:href="@{/carts}">Carro</a>
+                        <a class="dropdown-item" th:href="@{/checkouts}">Checkout</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a th:href="@{/contacts}" class="nav-link">Contacto</a></li>
+                <li class="nav-item cta cta-colored"><a th:href="@{/carts}" class="nav-link"><img src="images/carrito-de-compras.png"  width="20" height="20" th:href="@{/carts}"> [0]</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- END nav -->
 
     <div class="modal-dialog text-center">
         <div class="col-sm-8 main-section">

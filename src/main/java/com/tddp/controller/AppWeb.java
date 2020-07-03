@@ -52,6 +52,47 @@ public class AppWeb {
         model.addAttribute("user", new User());
         return "registration";
     }
+    @RequestMapping("/indexs")
+    public String index(Model model){
+        model.addAttribute("indexs");
+        return "index";
+    }
+
+    @RequestMapping("/shops")
+    public String Shop(Model model){
+        model.addAttribute("shops");
+        return "shop";
+    }
+    @RequestMapping("/abouts")
+    public String About(Model model){
+        model.addAttribute("abouts");
+        return "about";
+    }
+    @RequestMapping("/wishlists")
+    public String WishList(Model model){
+        model.addAttribute("wishlists");
+        return "wishlist";
+    }
+    @RequestMapping("/prodsingles")
+    public String ProdSingle(Model model){
+        model.addAttribute("prodsingles");
+        return "product-single";
+    }
+    @RequestMapping("/carts")
+    public String Cart(Model model){
+        model.addAttribute("carts");
+        return "cart";
+    }
+    @RequestMapping("/checkouts")
+    public String Checkout(Model model){
+        model.addAttribute("checkouts");
+        return "checkout";
+    }
+    @RequestMapping("/contacts")
+    public String Contact(Model model){
+        model.addAttribute("contacts");
+        return "contact";
+    }
 
     @PostMapping("/registration")
     private String registration(User user){
