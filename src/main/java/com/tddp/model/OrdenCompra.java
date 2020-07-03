@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.context.annotation.EnableMBeanExport;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ public class OrdenCompra {
     private Integer orden_compra_id;
 
     @Column
+    @DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")
     private LocalDateTime fechaOrden;
 
     @Column
