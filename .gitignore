@@ -8,6 +8,5 @@
 */target
 /target
 
-/data
-*/data
-/data/*
+src/main/resources/data/*
+src/main/resources/data
