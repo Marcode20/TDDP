@@ -93,6 +93,11 @@ public class AppWeb {
         model.addAttribute("contacts");
         return "contact";
     }
+    @RequestMapping("/graf")
+    public String Graficos(Model model){
+        model.addAttribute("graf");
+        return "graficos";
+    }
 
     @PostMapping("/registration")
     private String registration(User user){
