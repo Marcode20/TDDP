@@ -19,8 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @Slf4j
 @Service
@@ -29,6 +32,9 @@ public class AWSS3ServiceImpl implements AWSS3Service {
     private final AmazonS3 amazonS3;
     @Value("${aws.s3.bucket}")
     private String BUCKET_NAME;
+
+    @Value("${aws.s3.region}")
+    private String region;
 
     public AWSS3ServiceImpl(AmazonS3 amazonS3) {
         this.amazonS3 = amazonS3;
@@ -57,17 +63,29 @@ public class AWSS3ServiceImpl implements AWSS3Service {
         return s3Objects;
     }
 
-    public void uploadObject( File file){
-        this.amazonS3.putObject(BUCKET_NAME,  file.getName(), file);
+    public String uploadObject( File file, String s3ObjectName){
+        this.amazonS3.putObject(BUCKET_NAME,  s3ObjectName, file);
         System.out.println("Se ha subido el archivo");
+        String imageURL = "https://" + BUCKET_NAME + "s3." + region + ".amazonaws.com/" + file.getName();
+        return imageURL;
     }
 
-    public File convertToFile(MultipartFile file) throws IOException {
-        File convFile = new File(file.getOriginalFilename());
+    public File convertToFile(MultipartFile file, String name) throws IOException {
+        String nameWithLocation = "src/main/resources/data/" + name;
+        System.out.println("nameWithLocation : " + nameWithLocation);
+        File convFile = new File(nameWithLocation);
         convFile.createNewFile();
         FileOutputStream fos = new FileOutputStream(convFile);
         fos.write(file.getBytes());
         fos.close();
         return convFile;
+    }
+
+    public String setUniqueFileName(String originalFileName) {
+        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyy-hhmmss");
+        Random random = new Random();
+
+        String formatedUniqueImageName = String.format("%s-%s-%s", sdf.format(new Date()), random.nextInt(9), originalFileName);
+        return formatedUniqueImageName;
     }
 }

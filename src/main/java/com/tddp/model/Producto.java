@@ -31,8 +31,8 @@ public class Producto {
     private Integer stock;
     @Column
     private String productImageURL;
-    @Transient
-    private MultipartFile imageMultipartFile;
+    @Column
+    private String imageName;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "categoria_id")

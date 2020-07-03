@@ -26,7 +26,8 @@
             <th scope="col">Precio</th>
             <th scope="col">Stock</th>
             <th scope="col">Descripcion</th>
-            <th scope="col">Nombre Imagen</th>
+            <th scope="col">File Name</th>
+            <th scope="col">Formated Unique File Name</th>
             <th scope="col">Options</th>
         </tr>
         </thead>
@@ -38,6 +39,7 @@
             <td th:text="${producto.stock}"></td>
             <td th:text="${producto.descripcion}"></td>
             <td th:text="${producto.imageName}"></td>
+            <td th:text="${producto.productImageURL}"></td>
             <td class="text-right">
                 <div class="btn-group">
                     <a class="btn btn-danger btn-sm" th:href="@{/producto/edit/{id} (id=${producto.producto_id}) }">Editar</a>

@@ -2,6 +2,7 @@ package com.tddp.controller;
 
 
 import com.tddp.model.Producto;
+import com.tddp.service.AWSS3Service;
 import com.tddp.service.ProductoService;
 import com.tddp.service.ProductoServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -23,8 +25,16 @@ import java.util.Random;
 @Controller
 public class ProductController {
 
-    @Autowired
+    final
     ProductoService ProductoService;
+
+    final
+    AWSS3Service awss3Service;
+
+    public ProductController(ProductoService ProductoService, AWSS3Service awss3Service) {
+        this.ProductoService = ProductoService;
+        this.awss3Service = awss3Service;
+    }
 
     @GetMapping("/producto")
     public String getAllProducto(Model model){
@@ -63,18 +73,24 @@ public class ProductController {
     }
     @PostMapping("/producto/save")
     public String productoSave(Producto producto, @RequestParam("file") MultipartFile multipartfile){
-        SimpleDateFormat sdf = new SimpleDateFormat("File-ddMMyy-hhmmss.SSS.txt");
-        Random random = new Random();
-//        File file = new File(String.format("%s.%s", sdf.format( new Date() ),
-//                random.nextInt(9)));
+        try {
+            String formatedUniqueImageName = awss3Service.setUniqueFileName(multipartfile.getOriginalFilename());
+            System.out.println("name : " + formatedUniqueImageName);
+            producto.setImageName(multipartfile.getOriginalFilename());
+            String s3ObjectName = "productos/" + formatedUniqueImageName;
+            File file = awss3Service.convertToFile(multipartfile, s3ObjectName);
+            System.out.println("s3ObjectName : " + s3ObjectName);
+            String imageURL = awss3Service.uploadObject(file, s3ObjectName);
+            producto.setProductImageURL(formatedUniqueImageName);
+            ProductoService.createProducto(producto);
 
-        String name = String.format("%s.%s", sdf.format( new Date() ), random.nextInt(9));
-        log.info(name);
-        producto.setProductImageURL(multipartfile.getOriginalFilename());
-        producto.setImageMultipartFile(multipartfile);
-        System.out.println("a");
-        ProductoService.createProducto(producto);
+        }
+        catch (IOException ex){
+            ex.printStackTrace();
+        }
+
         return "redirect:/producto";
+
     }
 
 
