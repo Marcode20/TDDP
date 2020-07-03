@@ -8,9 +8,14 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
+import com.tddp.service.FileService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 @Configuration
 public class AmazonConfig {
@@ -39,6 +44,7 @@ public class AmazonConfig {
         return s3Client;
     }
 
+    @Bean
     public AmazonSQS sqs(){
         final AWSCredentials credentials = new BasicAWSCredentials(accessKeyId,
                 secretAccessKey);

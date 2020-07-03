@@ -3,6 +3,7 @@ package com.tddp.controller;
 
 import com.tddp.model.Producto;
 import com.tddp.service.AWSS3Service;
+import com.tddp.service.FileService;
 import com.tddp.service.ProductoService;
 import com.tddp.service.ProductoServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -31,9 +32,12 @@ public class ProductController {
     final
     AWSS3Service awss3Service;
 
-    public ProductController(ProductoService ProductoService, AWSS3Service awss3Service) {
+    final FileService fileService;
+
+    public ProductController(ProductoService ProductoService, AWSS3Service awss3Service, FileService fileService) {
         this.ProductoService = ProductoService;
         this.awss3Service = awss3Service;
+        this.fileService = fileService;
     }
 
     @GetMapping("/producto")
@@ -74,11 +78,11 @@ public class ProductController {
     @PostMapping("/producto/save")
     public String productoSave(Producto producto, @RequestParam("file") MultipartFile multipartfile){
         try {
-            String formatedUniqueImageName = awss3Service.setUniqueFileName(multipartfile.getOriginalFilename());
+            String formatedUniqueImageName = fileService.setUniqueFileName(multipartfile.getOriginalFilename());
             System.out.println("name : " + formatedUniqueImageName);
             producto.setImageName(formatedUniqueImageName);
             String s3ObjectName = "productos/" + formatedUniqueImageName;
-            File file = awss3Service.convertToFile(multipartfile, s3ObjectName);
+            File file = fileService.convertToFile(multipartfile, s3ObjectName);
             System.out.println("s3ObjectName : " + s3ObjectName);
             String imageURL = awss3Service.uploadObject(file, s3ObjectName);
             producto.setProductImageURL(imageURL);

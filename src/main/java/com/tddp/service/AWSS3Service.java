@@ -10,6 +10,4 @@ import java.util.List;
 public interface AWSS3Service {
     List<S3Object> listObjects();
     String uploadObject( File file, String S3ObjectName);
-    File convertToFile(MultipartFile file, String name) throws IOException;
-    String setUniqueFileName(String originalFileName);
 }

@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class OrdenCompraServiceImp implements  OrdenCompraService{
+public class OrdenCompraServiceImpl implements  OrdenCompraService{
 
     @Autowired
     OrdenCompraRepository ordenCompraRepository;

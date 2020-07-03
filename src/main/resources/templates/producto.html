@@ -41,7 +41,7 @@
             <td th:text="${producto.descripcion}"></td>
             <td th:text="${producto.imageName}"></td>
             <td th:text="${producto.productImageURL}"></td>
-            <td ><img src="https://tiendita-de-don-pepe-bucket.s3.us-west-2.amazonaws.com/020720-111509-5-TEST.png"/></td>
+            <td ><img th:src="${producto.productImageURL}"/></td>
             <td class="text-right">
                 <div class="btn-group">
                     <a class="btn btn-danger btn-sm" th:href="@{/producto/edit/{id} (id=${producto.producto_id}) }">Editar</a>

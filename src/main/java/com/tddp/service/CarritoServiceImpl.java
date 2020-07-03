@@ -4,11 +4,13 @@ import com.tddp.exception.ResourceNotFoundException;
 import com.tddp.model.Carrito;
 import com.tddp.repository.CarritoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-public class CarritoServiceImp implements CarritoService{
+@Service
+public class CarritoServiceImpl implements CarritoService{
 
     @Autowired
     CarritoRepository carritoRepository;

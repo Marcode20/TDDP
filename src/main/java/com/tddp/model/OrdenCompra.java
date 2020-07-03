@@ -3,6 +3,7 @@ package com.tddp.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.context.annotation.EnableMBeanExport;
 
 import javax.persistence.*;
@@ -23,8 +24,21 @@ public class OrdenCompra {
     private LocalDateTime fechaOrden;
 
     @Column
+    private String fileS3Key;
+
+    @Column
     private Double total;
 
     @OneToOne(mappedBy = "ordenCompra")
     private Carrito carrito;
+
+    @Override
+    public String toString() {
+        return "OrdenCompra\n" +
+                "orden_compra_id=" + orden_compra_id + "\n" +
+                ", fechaOrden =" + fechaOrden + "\n" +
+                ", carrito =" + carrito + "\n" +
+                ", total =" + total ;
+    }
+
 }

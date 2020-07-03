@@ -66,26 +66,9 @@ public class AWSS3ServiceImpl implements AWSS3Service {
     public String uploadObject( File file, String s3ObjectName){
         this.amazonS3.putObject(BUCKET_NAME,  s3ObjectName, file);
         System.out.println("Se ha subido el archivo");
-        String imageURL = "https://" + BUCKET_NAME + ".s3." + region + ".amazonaws.com/" + file.getName();
+        String imageURL = "https://" + BUCKET_NAME + ".s3." + region + ".amazonaws.com/" + s3ObjectName;
         return imageURL;
     }
 
-    public File convertToFile(MultipartFile file, String name) throws IOException {
-        String nameWithLocation = "src/main/resources/data/" + name;
-        System.out.println("nameWithLocation : " + nameWithLocation);
-        File convFile = new File(nameWithLocation);
-        convFile.createNewFile();
-        FileOutputStream fos = new FileOutputStream(convFile);
-        fos.write(file.getBytes());
-        fos.close();
-        return convFile;
-    }
 
-    public String setUniqueFileName(String originalFileName) {
-        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyy-hhmmss");
-        Random random = new Random();
-
-        String formatedUniqueImageName = String.format("%s-%s-%s", sdf.format(new Date()), random.nextInt(9), originalFileName);
-        return formatedUniqueImageName;
-    }
 }
