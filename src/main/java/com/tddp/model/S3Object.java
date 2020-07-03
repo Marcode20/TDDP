@@ -1,6 +1,8 @@
 package com.tddp.model;
 
+
 import java.util.Date;
+
 
 public class S3Object {
     public String bucketName ;
@@ -9,5 +11,7 @@ public class S3Object {
     public long size;
     public Date lastModified;
     public String storageClass;
+
     public Owner owner;
+
 }
