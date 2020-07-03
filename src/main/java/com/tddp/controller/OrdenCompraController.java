@@ -1,11 +1,9 @@
 package com.tddp.controller;
 
+import com.tddp.model.Carrito;
 import com.tddp.model.OrdenCompra;
 import com.tddp.model.Producto;
-import com.tddp.service.AWSS3Service;
-import com.tddp.service.AWSSQSService;
-import com.tddp.service.FileService;
-import com.tddp.service.OrdenCompraService;
+import com.tddp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,22 +20,26 @@ public class OrdenCompraController {
 
     final OrdenCompraService ordenCompraService;
 
+    final CarritoService carritoService;
+
     final AWSS3Service awss3Service;
 
     final AWSSQSService awssqsService;
 
     final FileService fileService;
 
-    public OrdenCompraController(OrdenCompraService ordenCompraService, AWSS3Service awss3Service, FileService fileService, AWSSQSService awssqsService) {
+    public OrdenCompraController(OrdenCompraService ordenCompraService, AWSS3Service awss3Service, FileService fileService, AWSSQSService awssqsService, CarritoService carritoService) {
         this.ordenCompraService = ordenCompraService;
         this.awss3Service = awss3Service;
         this.fileService = fileService;
         this.awssqsService = awssqsService;
+        this.carritoService = carritoService;
     }
 
     @GetMapping("/ordenCompra")
     public String getAllOrdenCompra(Model model){
         model.addAttribute("listaOrdenCompra", ordenCompraService.GetOrdenCompra());
+
         //model.addAttribute("productnew", new Producto());
         return "ordenCompra" ;
     }
@@ -45,6 +47,7 @@ public class OrdenCompraController {
     @GetMapping("/ordenCompra/add")
     public String ordenCompraAdd(Model model){
         model.addAttribute("ordenCompra", new OrdenCompra());
+        model.addAttribute("listaCarritos", carritoService.GetCarritoALL());
         return "ordenCompra-add";
     }
 
