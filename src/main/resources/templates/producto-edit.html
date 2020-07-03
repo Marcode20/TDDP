@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>mantenimiento Producto</title>
+</head>
+<body data-spy="scroll" data-target="#navbar" data-offset="125">
+
+<main>
+    <div class="container-fluid" style="background: #82ad36; border: 1px solid red">
+
+        <div class="row" style="height: 655px;"  >
+
+            <div class="col-1" style="background: red">
+                <img src="images/atras.png" alt="">
+            </div>
+            <div  class="col-10" style="background: beige;">
+                <h2 class="text-center text-warning" style="padding-top: 6vh;">Formulario para Editar Chofer</h2>
+                <hr style=" height: 2px; width: 50%; background-color: black;">
+                <div class="row" style="width: 900px; height: auto;">
+
+
+                    <div class="col bg-warning" style="margin-left: 50vh;">
+                        <form action="#" method="post"
+                              th:object="${producto} "
+                              th:action="@{/producto/update/{id} (id = ${producto.producto_id})}">
+
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Nombre del producto</label>
+                                    <input type="text" class="form-control" id="inputPassword4"  th:field="*{nombre}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress">Precio producto</label>
+                                <input type="number" class="form-control" id="inputAddress" th:field="*{precio}">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputCity">Stock</label>
+                                    <input type="number" class="form-control" id="inputCity" th:field="*{stock}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputCity2">Descripcion</label>
+                                    <input type="text" class="form-control" id="inputCity2" th:field="*{descripcion}">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-success mb-2">Guardar</button>
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-1" style="background: red">
+
+            </div>
+        </div>
+
+
+    </div>
+</main>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="Js/index.js"></script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.tddp.service;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -10,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+@Service
 public class FIleServiceImpl implements FileService{
     public File createFile(String fileContent, String name) throws IOException {
         String nameWithLocation = "src/main/resources/data/" + name;
