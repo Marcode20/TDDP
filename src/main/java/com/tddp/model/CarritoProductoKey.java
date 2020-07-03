@@ -5,11 +5,12 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @EqualsAndHashCode
 @Embeddable
 @Data
-public class CarritoProductoKey {
+public class CarritoProductoKey implements Serializable {
     @Column(name = "carrito_id")
     private Integer  carritoId;
 

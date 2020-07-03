@@ -11,36 +11,36 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
-
-@RestController
-@RequestMapping("/api")
+//
+//@RestController
+//@RequestMapping("/api")
 public class ProductoResource {
 
-    @Autowired
-    ProductoService productoService;
-
-    @GetMapping("/producto")
-    public ResponseEntity getAllProducto(){
-        List<Producto> productos = productoService.getProductoall();
-        if(productos == null){
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity(productos, HttpStatus.OK);
-    }
-
-
-
-    @GetMapping("/producto/{id}")
-    public ResponseEntity updateProducto(@PathVariable Integer id, @RequestBody Producto producto){
-        Producto currentProducto = productoService.getProductoById(id);
-        if(currentProducto == null){
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
-        }
-        producto.setProducto_id(id);
-        productoService.updateProducto(producto);
-
-        return new ResponseEntity(producto, HttpStatus.OK);
-    }
+//    @Autowired
+//    ProductoService productoService;
+//
+//    @GetMapping("/producto")
+//    public ResponseEntity getAllProducto(){
+//        List<Producto> productos = productoService.getProductoall();
+//        if(productos == null){
+//            return new ResponseEntity(HttpStatus.NO_CONTENT);
+//        }
+//        return new ResponseEntity(productos, HttpStatus.OK);
+//    }
+//
+//
+//
+//    @GetMapping("/producto/{id}")
+//    public ResponseEntity updateProducto(@PathVariable Integer id, @RequestBody Producto producto){
+//        Producto currentProducto = productoService.getProductoById(id);
+//        if(currentProducto == null){
+//            return new ResponseEntity(HttpStatus.NO_CONTENT);
+//        }
+//        producto.setProducto_id(id);
+//        productoService.updateProducto(producto);
+//
+//        return new ResponseEntity(producto, HttpStatus.OK);
+//    }
 
 //    @PostMapping("/producto/update/{id}")
 //    public String updateMoto(@PathVariable Integer id, Producto producto){

@@ -4,6 +4,7 @@ package com.tddp.controller;
 import com.tddp.model.Producto;
 import com.tddp.service.ProductoService;
 import com.tddp.service.ProductoServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
+@Slf4j
 @Controller
 public class ProductController {
 
@@ -58,10 +63,13 @@ public class ProductController {
     }
     @PostMapping("/producto/save")
     public String productoSave(Producto producto, @RequestParam("file") MultipartFile multipartfile){
-//        new File(String.format("%s.%s", sdf.format( new Date() ),
+        SimpleDateFormat sdf = new SimpleDateFormat("File-ddMMyy-hhmmss.SSS.txt");
+        Random random = new Random();
+//        File file = new File(String.format("%s.%s", sdf.format( new Date() ),
 //                random.nextInt(9)));
-        new SimpleDateFormat("File-ddMMyy-hhmmss.SSS.txt");
-     //   String name = String.format("%s, %s", sdf.)
+
+        String name = String.format("%s.%s", sdf.format( new Date() ), random.nextInt(9));
+        log.info(name);
         producto.setProductImageURL(multipartfile.getOriginalFilename());
         producto.setImageMultipartFile(multipartfile);
         System.out.println("a");
