@@ -17,7 +17,7 @@ public class CarritoController {
 
     @GetMapping("/carrito")
     public String listCarrito(Model model){
-        model.addAttribute("carrito",carritoService.GetCarritoALL());
+        model.addAttribute("carritos",carritoService.GetCarritoALL());
         return "carrito";
     }
 
