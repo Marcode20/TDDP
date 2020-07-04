@@ -1,19 +1,13 @@
 package com.tddp.controller;
 
-import com.tddp.model.Carrito;
 import com.tddp.model.OrdenCompra;
-import com.tddp.model.Producto;
 import com.tddp.service.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.io.File;
-import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Controller
 public class OrdenCompraController {
@@ -62,8 +56,14 @@ public class OrdenCompraController {
             System.out.println("s3ObjectName : " + s3ObjectName);
             //String imageURL = awss3Service.uploadObject(file, s3ObjectName);
             awssqsService.sendToQueue(ordenCompra.toString(), s3ObjectName);
+
+            LocalDateTime localDateTime = LocalDateTime.now();
+
+            ordenCompra.setFechaOrden(localDateTime);
+
             ordenCompraService.createOrdenCompra(ordenCompra);
 
         return "redirect:/ordenCompraRealizada";
     }
+
 }

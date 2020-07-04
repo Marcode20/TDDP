@@ -30,19 +30,19 @@
 
                     <select th:field="*{carrito}">
                     <option th:each="carrito : ${listaCarritos}"
-                            th:value="${carrito.getCarrito_id()}"
-                            th:text="${carrito.getCarrito_id()}" />
+                            th:value="${carrito.carrito_id}"
+                            th:text="${carrito.carrito_id}" />
                     </select>
                 </td>
             </tr>
             <tr>
                 <td>Fecha:</td>
-                <td><input type="date" th:field="*{fechaOrden}"></td>
+                <td><input type="date" th:field="*{fechaOrden}" disabled></td>
             </tr>
 
             <tr>
                 <td>fileS3Key:</td>
-                <td><input type="text" th:field="*{fileS3Key}"></td>
+                <td><input type="text" th:field="*{fileS3Key}" disabled></td>
             </tr>
             <tr>
                 <td>total:</td>
