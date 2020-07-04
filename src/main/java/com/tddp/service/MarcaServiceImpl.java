@@ -4,10 +4,12 @@ import com.tddp.exception.ResourceNotFoundException;
 import com.tddp.model.Marca;
 import com.tddp.repository.MarcaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MarcaServiceImpl implements MarcaService{
 
     @Autowired
