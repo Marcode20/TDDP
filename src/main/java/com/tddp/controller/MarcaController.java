@@ -27,7 +27,7 @@ public class MarcaController {
     @GetMapping("marca/add")
     public String marcaAdd(Model model){
         model.addAttribute("marca", new Marca());
-        return "marca-add";
+        return "marca-add.html";
     }
 
     @PostMapping("marca/save")
@@ -40,7 +40,7 @@ public class MarcaController {
     public String marcaEdit(@PathVariable Integer id, Model model){
         Marca currentMarca = marcaService.GetMarcaById(id);
         model.addAttribute("marca", currentMarca);
-        return "marca-edit";
+        return "marca-edit.html";
     }
 
     @PostMapping("marca/update/{id}")

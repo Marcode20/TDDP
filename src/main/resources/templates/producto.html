@@ -1,82 +1,275 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link th:href="@{/styles/styles.css}" rel="stylesheet" />
+
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" º>
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" />
     <title>Mantenimiento Producto</title>
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
+<body id="page-top">
 
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-    <img src="images/logotienda.png" width="130" height="80" th:href="@{/indexs}">
-    <div class="container">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
-        </button>
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav ml-auto">
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/menu}">
+            <div class="sidebar-brand-icon rotate-n-15">
+            </div>
+            <div class="sidebar-brand-text mx-3"> <img src="images/logotienda.png" alt="logo" style="width:80px;" >Administrador</div>
+        </a>
 
-                <li class="nav-item active"><a th:href="@{/menu}" class="nav-link">Administrador </a></li>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
 
+        <!-- Nav Item - Dashboard -->
+        <!-- <li class="nav-item active">
+             <a class="nav-link" href="index.html">
+                 <i class="fas fa-fw fa-tachometer-alt"></i>
+                 <span>Dashboard</span></a>
+         </li>-->
 
-                <li class="nav-item"><a th:href="@{/login}" class="nav-link">Salir</a></li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
-            </ul>
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Interface
         </div>
-    </div>
-</nav>
-<div id="main-div2" >
-    <br>
-    <br>
-    <button class="btn btn-warning text-white"><a th:href="@{/producto/add}">Crear Producto</a></button><br>
-    <br>
-    <br>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">File Name</th>
-                    <th scope="col">Image URL</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Options</th>
-                </tr>
-                </thead>
 
-                <tbody>
-                <tr th:each="producto: ${listaProducto}">
-                    <th scope="row" th:text="${producto.producto_id}"></th>
-                    <td th:text="${producto.nombre}"></td>
-                    <td th:text="${producto.precio}"></td>
-                    <td th:text="${producto.stock}"></td>
-                    <td th:text="${producto.descripcion}"></td>
-                    <td th:text="${producto.imageName}"></td>
-                    <td th:text="${producto.productImageURL}"></td>
-                    <td ><img th:src="${producto.productImageURL}"/></td>
-                    <td class="text-right">
-                        <div class="btn-group">
-                            <a class="btn btn-danger btn-sm" th:href="@{/producto/edit/{id} (id=${producto.producto_id}) }">Editar</a>
-                            <a class="btn btn-danger btn-sm" th:href="@{/producto/delete/{id} (id=${producto.producto_id}) }">Borrar</a>
-                        </div>
-                    </td>
-                </tr>
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Components</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Components:</h6>
+                    <a class="collapse-item" th:href="@{/graf}">Graficos</a>
 
-                </tbody>
-            </table>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Mantenimiento</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Utilities:</h6>
+                    <a class="collapse-item" th:href="@{/categoria}">Categoria </a>
+                    <a class="collapse-item" th:href="@{/marca}">Marca</a>
+                    <a class="collapse-item" th:href="@{/producto}">Producto</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Addons
         </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Pages</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Login Screens:</h6>
+                    <a class="collapse-item" th:href="@{/login}">Login</a>
+                    <a class="collapse-item" th:href="@{/registration}">Register</a>
+                    <div class="collapse-divider"></div>
+                    <h6 class="collapse-header">Other Pages:</h6>
+                    <a class="collapse-item" th:href="@{/indexs}">Pagina Principal</a>
+
+                </div>
+            </div>
+        </li>
+
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+            <a class="nav-link" href="tables.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Tables</span></a>
+        </li>
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Settings
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Activity Log
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Salir
+                </a>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+
+            <div id="main-div2" >
+                <br>
+                <br>
+                <button class="btn btn-warning text-white"><a th:href="@{/producto/add}">Crear Producto</a></button><br>
+                <br>
+                <br>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Descripcion</th>
+                                <th scope="col">File Name</th>
+                                <th scope="col">Image URL</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Options</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr th:each="producto: ${listaProducto}">
+                                <th scope="row" th:text="${producto.producto_id}"></th>
+                                <td th:text="${producto.nombre}"></td>
+                                <td th:text="${producto.precio}"></td>
+                                <td th:text="${producto.stock}"></td>
+                                <td th:text="${producto.descripcion}"></td>
+                                <td th:text="${producto.imageName}"></td>
+                                <td th:text="${producto.productImageURL}"></td>
+                                <td ><img th:src="${producto.productImageURL}" width="110" height="80" /></td>
+                                <td class="text-right">
+                                    <div class="btn-group">
+                                        <a class="btn btn-danger btn-sm" th:href="@{/producto/edit/{id} (id=${producto.producto_id}) }">Editar</a>
+                                        <a class="btn btn-danger btn-sm" th:href="@{/producto/delete/{id} (id=${producto.producto_id}) }">Borrar</a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Tiendita de Don pepe  2010</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
     </div>
+    <!-- End of Content Wrapper -->
 
 </div>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" th:href="@{/login}">Cerrar sesión</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-12  col-lg mb-2  ml-2 mr-2"  id="chr4">
+        <button class="btn btn-success"><a th:href="@{/ordenCompra}">Orden Compra</a></button><br>
+        <img src="images/jefe.png" alt="jefe">
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="js/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="js/chart-area-demo.js"></script>
+<script src="js/chart-pie-demo.js"></script>
+
+
 </body>
 </html>
