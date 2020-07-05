@@ -1,0 +1,37 @@
+<div th:fragment = "navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+<!--        <img src="images/pg-logo-transparent.png" width="50" height="50" th:href="@{/indexs}">-->
+        <div class="container">
+
+<!--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                <span class="oi oi-menu"></span> Menu-->
+<!--            </button>-->
+            <img src="images/pg-logo-transparent.png" width="50" height="50" th:href="@{/indexs}">
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto" style="vertical-align: middle">
+                    <li class="nav-item active"><a th:href="@{/indexs}" class="nav-link">Home</a></li>
+                    <li class="nav-item active"><a th:href="@{/abouts}" class="nav-link">Acerca</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ayuda</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown04">
+                            <a class="dropdown-item" th:href="@{/shops}">Tienda</a>
+                            <a class="dropdown-item" th:href="@{/wishlists}">Listado</a>
+                            <a class="dropdown-item" th:href="@{/prodsingles}">Producto Unico</a>
+                            <a class="dropdown-item" th:href="@{/carts}">Carro</a>
+                            <a class="dropdown-item" th:href="@{/checkouts}">Checkout</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a th:href="@{/contacts}" class="nav-link">Contacto</a></li>
+                    <li class="nav-item cta cta-colored">
+<!--                        <img src="images/carrito-de-compras.png"  width="20" height="20" th:href="@{/carts}"> [0]-->
+                        <a th:href="@{/carts}" class="nav-link" style="vertical-align:middle;"> <ion-icon name="cart-outline"   style="font-size: 19px; vertical-align:middle; margin-right: 3px" class="ion-icon"></ion-icon> <span style="vertical-align:middle;">Cart</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a th:href="@{/abouts}" class="nav-link" style="vertical-align:middle;"> <ion-icon name="person-outline" style="font-size: 18px; vertical-align:middle; margin-right: 4px" class="ion-icon"></ion-icon><span style="vertical-align:middle;">Login</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
