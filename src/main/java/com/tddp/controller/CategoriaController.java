@@ -34,7 +34,7 @@ public class CategoriaController {
         return "categoria-add";
     }
 
-    @PostMapping
+    @PostMapping("categoria/save")
     public String categoriaSave(Categoria categoria){
         categoriaService.createCategoria(categoria);
         return "redirect:/categoria";
