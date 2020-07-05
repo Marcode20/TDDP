@@ -157,7 +157,7 @@
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" class="d-flex flex-column" style="text-align: center">
 
         <!-- Main Content -->
         <div id="content">
@@ -165,13 +165,13 @@
 
             <h5  id="staticBackdropLabel">Insertar Producto</h5>
 
-            <div class="modal-body">
+            <div>
 
                 <form action="#" method="post" enctype="multipart/form-data"
                       th:object="${producto}"
                       th:action="@{/producto/save} ">
-
-                    <table>
+                <div>
+                    <table  align="center">
                         <tr>
                             <td>ID:</td>
                             <td><input type="text" th:field="*{producto_id}" disabled></td>
@@ -208,13 +208,9 @@
 
 
                     </table>
+                </div>
                 </form>
             </div>
-
-
-
-
-
 
         </div>
         <!-- End of Main Content -->
