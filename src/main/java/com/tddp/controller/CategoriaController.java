@@ -59,8 +59,8 @@ public class CategoriaController {
         categoriaService.deleteCategoria(id);
         return "redirect:/categoria";
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 791dcfd9f79844f2e04b3cc999d0524772a4daa5
+
+
+
