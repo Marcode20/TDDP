@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MarcaController {
-
     private final MarcaService marcaService;
 
 
@@ -20,7 +19,7 @@ public class MarcaController {
 
     @GetMapping("marca")
     public String getAllMarca(Model model){
-        model.addAttribute("categorias", marcaService.GetMarcaAll());
+        model.addAttribute("marcas", marcaService.GetMarcaAll());
 
         return "marca";
     }
@@ -28,10 +27,10 @@ public class MarcaController {
     @GetMapping("marca/add")
     public String marcaAdd(Model model){
         model.addAttribute("marca", new Marca());
-        return "marca-add";
+        return "marca-add.html";
     }
 
-    @PostMapping
+    @PostMapping("marca/save")
     public String marcaSave(Marca marca){
         marcaService.createMarca(marca);
         return "redirect:/marca";
@@ -40,8 +39,8 @@ public class MarcaController {
     @GetMapping("marca/edit/{id}")
     public String marcaEdit(@PathVariable Integer id, Model model){
         Marca currentMarca = marcaService.GetMarcaById(id);
-        model.addAttribute("categoria", currentMarca);
-        return "marca-edit";
+        model.addAttribute("marca", currentMarca);
+        return "marca-edit.html";
     }
 
     @PostMapping("marca/update/{id}")

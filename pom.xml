@@ -95,6 +95,12 @@
             <artifactId>aws-java-sdk-sqs</artifactId>
             <version>1.11.792</version>
         </dependency>
+<!--    dev tools-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
 
     </dependencies>
 
