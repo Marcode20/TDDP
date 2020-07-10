@@ -4,8 +4,7 @@
     <!-- Required meta tags -->
     <div th:replace = "admin/fragments/adminHeader :: adminHeader" ></div>
     <!-- END nav -->
-    <title>Admin Marca Edit</title>
-
+    <title>Admin Categoria Add</title>
 </head>
 <body id="page-top">
 
@@ -20,38 +19,43 @@
     <div id="content-wrapper" class="d-flex flex-column" style="text-align: center">
 
         <!-- Main Content -->
-        <div  class="col-10" style="text-align: center">
-            <h2 class="text-center text-warning" style="padding-top: 6vh;">Formulario para Editar Marca</h2>
-            <hr style=" height: 2px; width: 50%; background-color: black;">
-            <div class="row" style="width: 900px; height: auto;">
+        <div id="content">
 
 
-                <div class="col bg-warning" style="margin-left: 50vh;">
-                    <form action="#" method="post"
-                          th:object="${marca} "
-                          th:action="@{/admin/marca/update/{id} (id = ${marca.marca_id})}">
+            <h5  id="staticBackdropLabel">Insertar Categoria</h5>
 
-                        <div class="form-row">
+            <div>
 
-                            <div class="form-group col-md-6">
-                                <label for="inputPassword4">Nombre de la Marca</label>
-                                <input type="text" class="form-control" id="inputPassword4"  th:field="*{nombres}">
-                            </div>
-                        </div>
-                        <div class="form-row">
+                <form action="#" method="post" enctype="multipart/form-data"
+                      th:object="${categoria}"
+                      th:action="@{/admin/categoria/save} ">
+                    <div>
+                        <table  align="center">
+                            <tr>
+                                <td>ID:</td>
+                                <td><input type="text" th:field="*{categoria_id}" disabled></td>
+                            </tr>
+                            <tr>
+                                <td>Nombre:</td>
+                                <td><input type="text" th:field="*{nombre}"></td>
+                            </tr>
 
-                            <div class="form-group col-md-6">
-                                <label for="inputCity2">Descripcion</label>
-                                <input type="text" class="form-control" id="inputCity2" th:field="*{descripcion}">
-                            </div>
-                        </div>
+                            <tr>
+                                <td>Descripcion:</td>
+                                <td><input type="text" th:field="*{estado}"></td>
+                            </tr>
+                            <tr class="pt-2">
+                                <td>
+                                    <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-primary">Grabar</button>
+                                </td>
+                            </tr>
 
-                        <button type="submit" class="btn btn-success mb-2">Guardar</button>
-                    </form>
 
-
-                </div>
-
+                        </table>
+                    </div>
+                </form>
             </div>
 
         </div>
@@ -99,7 +103,6 @@
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript-->
 <div th:replace = "admin/fragments/adminFooterScripts :: adminFooterScripts" ></div>
 
 
