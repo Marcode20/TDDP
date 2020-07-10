@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <div th:replace = "admin/fragments/adminHeader :: adminHeader" ></div>
+    <!-- END nav -->
+    <title>Admin Producto</title>
+
+</head>
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace = "admin/fragments/adminSidebar :: adminSidebar" ></div>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+
+            <div id="main-div2" >
+                <br>
+                <br>
+                <button class="btn btn-warning text-white"><a th:href="@{/admin/producto/add}">Crear Producto</a></button><br>
+                <br>
+                <br>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Descripcion</th>
+                                <th scope="col">File Name</th>
+                                <th scope="col">Image URL</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Options</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr th:each="producto: ${listaProducto}">
+                                <th scope="row" th:text="${producto.producto_id}"></th>
+                                <td th:text="${producto.nombre}"></td>
+                                <td th:text="${producto.precio}"></td>
+                                <td th:text="${producto.stock}"></td>
+                                <td th:text="${producto.descripcion}"></td>
+                                <td th:text="${producto.imageName}"></td>
+                                <td th:text="${producto.productImageURL}"></td>
+                                <td ><img th:src="${producto.productImageURL}" width="110" height="80" /></td>
+                                <td class="text-right">
+                                    <div class="btn-group">
+                                        <a class="btn btn-danger btn-sm" th:href="@{/admin/producto/edit/{id} (id=${producto.producto_id}) }">Editar</a>
+                                        <a class="btn btn-danger btn-sm" th:href="@{/admin/producto/delete/{id} (id=${producto.producto_id}) }">Borrar</a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Tiendita de Don pepe  2010</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" th:href="@{/login}">Cerrar sesión</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-12  col-lg mb-2  ml-2 mr-2"  id="chr4">
+        <button class="btn btn-success"><a th:href="@{/ordenCompra}">Orden Compra</a></button><br>
+        <img src="images/jefe.png" alt="jefe">
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<div th:replace = "admin/fragments/adminFooterScripts :: adminFooterScripts" ></div>
+
+
+</body>
+</html>

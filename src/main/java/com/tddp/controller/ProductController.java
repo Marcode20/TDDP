@@ -5,9 +5,7 @@ import com.tddp.model.Producto;
 import com.tddp.service.AWSS3Service;
 import com.tddp.service.FileService;
 import com.tddp.service.ProductoService;
-import com.tddp.service.ProductoServiceImpl;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Random;
 
 @Slf4j
 @Controller
@@ -40,42 +35,43 @@ public class ProductController {
         this.fileService = fileService;
     }
 
-    @GetMapping("/producto")
+    @GetMapping("/admin/producto")
     public String getAllProducto(Model model){
         model.addAttribute("listaProducto", ProductoService.getProductoall());
         //model.addAttribute("productnew", new Producto());
-        return "producto" ;
+        return "admin/producto" ;
     }
 
-    @GetMapping("/producto/edit/{id}")
+    @GetMapping("/admin/producto/edit/{id}")
     public String editProducto(@PathVariable Integer id, Model model){
         Producto currentProducto = ProductoService.getProductoById(id);
         model.addAttribute("producto",currentProducto);
-        return "producto-edit";
+        System.out.println("edit: " + currentProducto);
+        return "admin/producto-edit";
     }
 
-    @PostMapping("/producto/update/{id}")
+    @PostMapping("/admin/producto/update/{id}")
     public String updateMoto(@PathVariable Integer id, Producto producto){
-        System.out.println(producto);
+        System.out.println("Update: " + producto);
         //producto.setImageName(producto.getImageMultipartFile().getOriginalFilename());
         producto.setProducto_id(id);
         ProductoService.updateProducto(producto);
 
-        return "redirect:/producto";
+        return "redirect:/admin/producto";
     }
 
-    @GetMapping("producto/delete/{id}")
+    @GetMapping("/admin/producto/delete/{id}")
     public String deleteProducto(@PathVariable Integer id){
         this.ProductoService.deleteProducto(id);
-        return "redirect:/producto";
+        return "redirect:/admin/producto";
     }
 
-    @GetMapping("/producto/add")
+    @GetMapping("/admin/producto/add")
     public String productoAdd(Model model){
         model.addAttribute("producto", new Producto());
-        return "producto-add";
+        return "admin/producto-add";
     }
-    @PostMapping("/producto/save")
+    @PostMapping("/admin/producto/save")
     public String productoSave(Producto producto, @RequestParam("file") MultipartFile multipartfile){
         try {
             String formatedUniqueImageName = fileService.setUniqueFileName(multipartfile.getOriginalFilename());
@@ -91,7 +87,7 @@ public class ProductController {
         catch (IOException ex){
             ex.printStackTrace();
         }
-        return "redirect:/producto";
+        return "redirect:/admin/producto";
     }
 
 

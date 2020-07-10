@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <div th:replace = "admin/fragments/adminHeader :: adminHeader" ></div>
+    <!-- END nav -->
+    <title>Admin Producto Edit</title>
+
+</head>
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace = "admin/fragments/adminSidebar :: adminSidebar" ></div>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column" style="text-align: center">
+
+        <!-- Main Content -->
+        <div  class="col-10" style="text-align: center">
+            <h2 class="text-center text-warning" style="padding-top: 6vh;">Formulario para Editar Chofer</h2>
+            <hr style=" height: 2px; width: 50%; background-color: black;">
+            <div class="row" style="width: 900px; height: auto;">
+
+
+                <div class="col bg-warning" style="margin-left: 50vh;">
+                    <form action="#" method="post"
+                          th:object="${producto} "
+                          th:action="@{/admin/producto/update/{id} (id = ${producto.producto_id})}">
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Nombre del producto</label>
+                                <input type="text" class="form-control" id="inputPassword4"  th:field="*{nombre}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Precio producto</label>
+                            <input type="number" class="form-control" id="inputAddress" th:field="*{precio}">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">Stock</label>
+                                <input type="number" class="form-control" id="inputCity" th:field="*{stock}">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputCity2">Descripcion</label>
+                                <input type="text" class="form-control" id="inputCity2" th:field="*{descripcion}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <input  type="hidden" class="form-control" id="imageName" th:field="*{imageName}">
+                        </div>
+                        <div class="form-group">
+
+                        <input type="hidden" class="form-control" id="productImageURL" th:field="*{productImageURL}">
+                        </div>
+
+                        <button type="submit" class="btn btn-success mb-2">Guardar</button>
+                    </form>
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Tiendita de Don pepe  2010</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" th:href="@{/login}">Cerrar sesión</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-12  col-lg mb-2  ml-2 mr-2"  id="chr4">
+        <button class="btn btn-success"><a th:href="@{/ordenCompra}">Orden Compra</a></button><br>
+        <img src="images/jefe.png" alt="jefe">
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<div th:replace = "admin/fragments/adminFooterScripts :: adminFooterScripts" ></div>
+
+
+</body>
+</html>

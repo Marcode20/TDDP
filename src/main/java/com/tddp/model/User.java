@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -16,13 +17,13 @@ public class User {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long id;
+    private Integer id;
     private String username;
     private String password;
     @Transient
     private String passwordConfirm;
 
     @ManyToMany
-    private Set<Role> roles;
+    private List<Role> roles;
 
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace = "page/fragments/pageHeader :: pageHeader" ></div>
+    <title>Login</title>
+</head>
+<body class="text-center">
+<div th:replace = "page/fragments/topnav :: navbar" ></div>
+<!-- END nav -->
+
+    <div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <div class="col-12">Login</div>
+                <form  th:action="@{/login}" method="post">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="username" placeholder="username" >
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" name="password" placeholder="password" >
+                    </div>
+                    <button class="btn btn-primary" type="submit" >Login</button>
+                    <h6 class="text-center"><a th:href="@{/registration}">crear una cuenta</a>  </h6>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<div th:replace="page/fragments/footerScripts :: footerScripts"></div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace = "admin/fragments/adminHeader :: adminHeader" ></div>
+    <!-- END nav -->
+    <title>Pagina Principal</title>
+
+</head>
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace = "admin/fragments/adminSidebar :: adminSidebar" ></div>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+<!--            &lt;!&ndash; /.container-fluid &ndash;&gt;-->
+<!--            <div class="row text-center" id="icon">-->
+<!--                <div class="col-12  col-lg mb-2 ml-2" id="chr1">-->
+<!--                    <button class="btn btn-danger" ><a th:href="@{/categoria}">Categoria</a></button><br>-->
+<!--                    <img src="images/driver.png" alt="chofer">-->
+<!--                </div>-->
+<!--                <div class="col-12  col-lg mb-2 ml-2"  id="chr2">-->
+<!--                    <button class="btn btn-warning text-white"><a th:href="@{/marca}">Marca</a></button><br>-->
+<!--                    <img src="images/moto.png" alt="moto">-->
+<!--                </div>-->
+<!--                <div class="col-12  col-lg mb-2  ml-2 mr-2"  id="chr3">-->
+<!--                    <button class="btn btn-success"><a th:href="@{/producto}">Producto</a></button><br>-->
+<!--                    <img src="images/jefe.png" alt="jefe">-->
+<!--                </div>-->
+<!--            </div>-->
+            <section>
+                <div class="row">
+
+                    <div id="menu" class="col-12 col-lg">
+                        <h2 id="titulo"  class="text-center text-primary">Mantenimiento de Base de datos</h2>
+                        <hr>
+                        <div class="row text-center" >
+                            <div class="col-12  col-lg mb-2 ml-2" >
+                                <button class="btn btn-danger" ><a th:href="@{/categoria}">Categoria</a></button><br>
+                                <hr>
+                                <img th:src="@{/images/categoria.png}" width="250" height="220" alt="categoria">
+                                <hr>
+                                <p>
+                                    Nuesta Categoria es primordial para la organizacion de todos  nuetros
+                                    productos y asi tener mas orden y control al momentos de realizar ventas .
+                                </p>
+                            </div>
+                            <div class="col-12  col-lg mb-2 ml-2" >
+                                <button class="btn btn-warning text-white"><a th:href="@{/marca}">Marca</a></button><br>
+                                <hr>
+                                <img th:src="@{/images/marca.jpg}" width="250" height="220" alt="marca">
+                                <hr>
+                                <p>
+                                    La marca es, por así decir, lo que da identidad y significado a un producto o servicio concretos. Por ejemplo, u
+                                    no de los ejemplos de marcas más famosos es, posiblemente, Coca-Cola, una marca fuerte, potente y con una identidad indiscutible
+                                </p>
+                            </div>
+                            <div class="col-12  col-lg mb-2  ml-2 mr-2" >
+                                <button class="btn btn-success"><a th:href="@{/producto}">Producto</a></button><br>
+                                <hr>
+                                <img th:src="@{/images/producto.jpg}" width="250" height="220" alt="producto">
+                                <hr>
+                                <p>
+                                    Concepto de producto. ... Un producto es un conjunto de características y atributos tangibles
+                                    (forma, tamaño, color...) e intangibles (marca, imagen de empresa, servicio...)
+                                    que el comprador acepta, en principio, como algo que va a satisfacer sus necesidades.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="derecho" class="col-lg-1 d-none d-sm-block .d-md-none .d-lg-block">
+
+                    </div>
+                </div>
+
+            </section>
+
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Tiendita de Don pepe  2010</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" th:href="@{/login}">Cerrar sesión</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-12  col-lg mb-2  ml-2 mr-2"  id="chr4">
+        <button class="btn btn-success"><a th:href="@{/ordenCompra}">Orden Compra</a></button><br>
+        <img src="images/jefe.png" alt="jefe">
+    </div>
+</div>
+
+<div th:replace = "admin/fragments/adminFooterScripts :: adminFooterScripts" ></div>
+
+
+</body>
+</html>

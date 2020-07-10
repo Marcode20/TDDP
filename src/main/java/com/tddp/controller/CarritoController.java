@@ -1,7 +1,6 @@
 package com.tddp.controller;
 
 import com.tddp.model.Carrito;
-import com.tddp.repository.CarritoRepository;
 import com.tddp.service.CarritoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
