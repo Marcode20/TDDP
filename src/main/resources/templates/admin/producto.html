@@ -37,10 +37,12 @@
                                 <th scope="col">Precio</th>
                                 <th scope="col">Stock</th>
                                 <th scope="col">Descripcion</th>
+                                <th scope ="col">Categoria</th>
                                 <th scope="col">File Name</th>
                                 <th scope="col">Image URL</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Options</th>
+
                             </tr>
                             </thead>
 
@@ -51,6 +53,7 @@
                                 <td th:text="${producto.precio}"></td>
                                 <td th:text="${producto.stock}"></td>
                                 <td th:text="${producto.descripcion}"></td>
+<!--                                <td th:text="${producto.categoria.toString()}"></td>-->
                                 <td th:text="${producto.imageName}"></td>
                                 <td th:text="${producto.productImageURL}"></td>
                                 <td ><img th:src="${producto.productImageURL}" width="110" height="80" /></td>

@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <div th:replace = "admin/fragments/adminHeader :: adminHeader" ></div>
     <!-- END nav -->
-    <title>Admin Producto Edit</title>
+    <title>Admin Categoria Edit</title>
 
 </head>
 <body id="page-top">
@@ -21,44 +21,29 @@
 
         <!-- Main Content -->
         <div  class="col-10" style="text-align: center">
-            <h2 class="text-center text-warning" style="padding-top: 6vh;">Formulario para Editar Producto</h2>
+            <h2 class="text-center text-warning" style="padding-top: 6vh;">Formulario para Editar Categoria</h2>
             <hr style=" height: 2px; width: 50%; background-color: black;">
             <div class="row" style="width: 900px; height: auto;">
 
 
                 <div class="col bg-warning" style="margin-left: 50vh;">
                     <form action="#" method="post"
-                          th:object="${producto} "
-                          th:action="@{/admin/producto/update/{id} (id = ${producto.producto_id})}">
+                          th:object="${categoria} "
+                          th:action="@{/admin/categoria/update/{id} (id = ${categoria.categoria_id})}">
 
                         <div class="form-row">
 
                             <div class="form-group col-md-6">
-                                <label for="inputPassword4">Nombre del producto</label>
+                                <label for="inputPassword4">Nombre de la Marca</label>
                                 <input type="text" class="form-control" id="inputPassword4"  th:field="*{nombre}">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="inputAddress">Precio producto</label>
-                            <input type="number" class="form-control" id="inputAddress" th:field="*{precio}">
-                        </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputCity">Stock</label>
-                                <input type="number" class="form-control" id="inputCity" th:field="*{stock}">
-                            </div>
+
                             <div class="form-group col-md-6">
                                 <label for="inputCity2">Descripcion</label>
-                                <input type="text" class="form-control" id="inputCity2" th:field="*{descripcion}">
+                                <input type="text" class="form-control" id="inputCity2" th:field="*{estado}">
                             </div>
-                        </div>
-                        <div class="form-group">
-
-                            <input  type="hidden" class="form-control" id="imageName" th:field="*{imageName}">
-                        </div>
-                        <div class="form-group">
-
-                        <input type="hidden" class="form-control" id="productImageURL" th:field="*{productImageURL}">
                         </div>
 
                         <button type="submit" class="btn btn-success mb-2">Guardar</button>

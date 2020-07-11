@@ -17,42 +17,42 @@ public class MarcaController {
         this.marcaService = marcaService;
     }
 
-    @GetMapping("marca")
+    @GetMapping("/admin/marca")
     public String getAllMarca(Model model){
-        model.addAttribute("marcas", marcaService.GetMarcaAll());
+        model.addAttribute("listamarca", marcaService.GetMarcaAll());
 
-        return "marca";
+        return "admin/marca";
     }
 
-    @GetMapping("marca/add")
+    @GetMapping("/admin/marca/add")
     public String marcaAdd(Model model){
         model.addAttribute("marca", new Marca());
-        return "marca-add.html";
+        return "admin/marca-add";
     }
 
-    @PostMapping("marca/save")
+    @PostMapping("/admin/marca/save")
     public String marcaSave(Marca marca){
         marcaService.createMarca(marca);
-        return "redirect:/marca";
+        return "redirect:/admin/marca";
     }
 
-    @GetMapping("marca/edit/{id}")
+    @GetMapping("/admin/marca/edit/{id}")
     public String marcaEdit(@PathVariable Integer id, Model model){
         Marca currentMarca = marcaService.GetMarcaById(id);
         model.addAttribute("marca", currentMarca);
-        return "marca-edit.html";
+        return "/admin/marca-edit";
     }
 
-    @PostMapping("marca/update/{id}")
+    @PostMapping("/admin/marca/update/{id}")
     public String updateMarca(@PathVariable Integer id, Marca marca){
         marca.setMarca_id(id);
         marcaService.updateMarca(marca);
-        return "redirect:/marca";
+        return "redirect:/admin/marca";
     }
 
-    @GetMapping("marca/delete/{id}")
+    @GetMapping("/admin/marca/delete/{id}")
     public String deleteMarca(@PathVariable Integer id){
         marcaService.deleteMarca(id);
-        return "redirect:/marca";
+        return "redirect:/admin/marca";
     }
 }

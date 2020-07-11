@@ -21,43 +21,45 @@ public class CategoriaController {
         this.categoriaService = categoriaService;
     }
 
-    @GetMapping("categoria")
+    @GetMapping("/admin/categoria")
     public String getAllCategorias(Model model){
-        model.addAttribute("categorias", categoriaService.getCategoriaAll());
+        model.addAttribute("listacategoria", categoriaService.getCategoriaAll());
 
-        return "categoria";
+        return "/admin/categoria";
     }
 
-    @GetMapping("categoria/add")
+
+
+    @GetMapping("/admin/categoria/add")
     public String categoriaAdd(Model model){
         model.addAttribute("categoria", new Categoria());
-        return "categoria-add";
+        return "/admin/categoria-add";
     }
 
-    @PostMapping("categoria/save")
+    @PostMapping("/admin/categoria/save")
     public String categoriaSave(Categoria categoria){
         categoriaService.createCategoria(categoria);
-        return "redirect:/categoria";
+        return "redirect:/admin/categoria";
     }
 
-    @GetMapping("categoria/edit/{id}")
+    @GetMapping("/admin/categoria/edit/{id}")
     public String categoriaEdit(@PathVariable Integer id, Model model){
         Categoria currentCategoria = categoriaService.getCategoriaById(id);
         model.addAttribute("categoria", currentCategoria);
-        return "categoria-edit";
+        return "/admin/categoria-edit";
     }
 
-    @PostMapping("categoria/update/{id}")
+    @PostMapping("/admin/categoria/update/{id}")
     public String updateCategoria(@PathVariable Integer id, Categoria categoria){
         categoria.setCategoria_id(id);
         categoriaService.updateCategoria(categoria);
-        return "redirect:/categoria";
+        return "redirect:/admin/categoria";
     }
 
-    @GetMapping("categoria/delete/{id}")
+    @GetMapping("/admin/categoria/delete/{id}")
     public String deleteCategoria(@PathVariable Integer id){
         categoriaService.deleteCategoria(id);
-        return "redirect:/categoria";
+        return "redirect:/admin/categoria";
     }
 
 }
