@@ -34,12 +34,24 @@ public class OrdenCompra {
     @OneToOne(mappedBy = "ordenCompra")
     private Carrito carrito;
 
+
+    public OrdenCompra( LocalDateTime fechaOrden, String fileS3Key,  Double total, Carrito carrito) {
+        this.fechaOrden = fechaOrden;
+        this.fileS3Key = fileS3Key;
+        this.total = total;
+        this.carrito = carrito;
+    }
+
     @Override
     public String toString() {
         return "OrdenCompra\n" +
                 "orden_compra_id=" + orden_compra_id + "\n" +
                 ", fechaOrden =" + fechaOrden + "\n" +
-                ", carrito =" + carrito + "\n" +
+                ", producto =" + carrito.getCarritoProducto().get(0).getProducto().getNombre() + "\n" +
+                ", cantidad =" + carrito.getCarritoProducto().get(0).getCantidad()+ "\n" +
+                ", precio =" + carrito.getCarritoProducto().get(0).getProducto().getPrecio()+ "\n" +
+                ", descripcion =" + carrito.getCarritoProducto().get(0).getProducto().getDescripcion()+ "\n" +
+                ", descuento = 3.00 " +
                 ", total =" + total ;
     }
 

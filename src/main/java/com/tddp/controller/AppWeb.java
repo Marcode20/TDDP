@@ -1,36 +1,45 @@
 package com.tddp.controller;
 
-import com.tddp.model.Role;
-import com.tddp.service.RoleService;
+import com.tddp.model.*;
+import com.tddp.service.*;
+import org.apache.tomcat.jni.Local;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.tddp.model.User;
-import com.tddp.service.SecurityService;
-import com.tddp.service.UserService;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.time.*;
 
 @Controller
 public class AppWeb {
 
+
+    private final ProductoService productoService;
     private final UserService userService;
     private final SecurityService securityService;
     private final RoleService roleService;
+    private final CarritoService carritoService;
+    private final CarritoProductoService carritoProductoService;
 
-    public AppWeb(UserService userService, SecurityService securityService, RoleService roleService) {
+
+    public AppWeb(UserService userService, SecurityService securityService, RoleService roleService, ProductoService productoService, CarritoService carritoService, CarritoProductoService carritoProductoService) {
         this.userService = userService;
         this.securityService = securityService;
         this.roleService = roleService;
+        this.productoService = productoService;
+        this.carritoService = carritoService;
+        this.carritoProductoService = carritoProductoService;
     }
 
     @RequestMapping("/")
@@ -117,11 +126,101 @@ public class AppWeb {
 
 //  PAGE
 
+
+
+
+
     @RequestMapping("/shop")
     public String Shop(Model model){
-        model.addAttribute("shop");
+        model.addAttribute("listaProducto", productoService.getProductoall());
         return "page/shop";
     }
+
+//    @GetMapping("/admin/producto/edit/{id}")
+//    public String editProducto(@PathVariable Integer id, Model model){
+//        Producto currentProducto = ProductoService.getProductoById(id);
+//        model.addAttribute("producto",currentProducto);
+//        System.out.println("edit: " + currentProducto);
+//        return "admin/producto-edit";
+//    }
+
+//    @PostMapping("/carrito/save")
+//    public  String addCarritoSaveMake(Model model, Carrito carrito){
+//      carritoService.createCarrito(carrito);
+//      return "redirect/:carrito";
+//    }
+
+
+//    @PostMapping("/admin/producto/save")
+//    public String productoSave(Producto producto, @RequestParam("file") MultipartFile multipartfile){
+//        try {
+//            String formatedUniqueImageName = fileService.setUniqueFileName(multipartfile.getOriginalFilename());
+//            System.out.println("name : " + formatedUniqueImageName);
+//            producto.setImageName(formatedUniqueImageName);
+//            String s3ObjectName = "productos/" + formatedUniqueImageName;
+//            File file = fileService.convertToFile(multipartfile, s3ObjectName);
+//            System.out.println("s3ObjectName : " + s3ObjectName);
+//            String imageURL = awss3Service.uploadObject(file, s3ObjectName);
+//            producto.setProductImageURL(imageURL);
+//            ProductoService.createProducto(producto);
+//        }
+//        catch (IOException ex){
+//            ex.printStackTrace();
+//        }
+//        return "redirect:/admin/producto";
+//    }
+
+    @GetMapping("/carritoProducto/producto/{id}")
+    public String saveCarritoProducto( @PathVariable Integer id){
+        //System.out.println("prd: " + producto);
+
+        LocalDateTime lt = LocalDateTime.now();
+        Carrito activeCarrito = carritoService.findActiveCarrito();
+        Producto producto = productoService.getProductoById(id);
+        System.out.println("prd: " + producto);
+        if(activeCarrito == null){
+
+            Carrito carrito = new Carrito();
+            carrito.setDate(lt);
+            carrito.setIsActive(1);
+            carritoService.createCarrito(carrito);
+
+
+
+            CarritoProductoKey carritoProductoKey = new CarritoProductoKey(carrito.getCarrito_id(), producto.getProducto_id());
+
+            CarritoProducto carritoProducto = new CarritoProducto(carritoProductoKey, carrito, producto, 1);
+//            carritoProducto.setProducto(producto);
+//            carritoProducto.setCarritoProductoKey(carritoProductoKey);
+//            carritoProducto.setCarrito(carrito);
+//            carritoProducto.setCantidad(1);
+            carritoProductoService.createCarritoProducto(carritoProducto);
+
+
+
+        }else{
+
+            CarritoProductoKey carritoProductoKey = new CarritoProductoKey(activeCarrito.getCarrito_id(), producto.getProducto_id());
+
+            CarritoProducto carritoProducto = new CarritoProducto(carritoProductoKey, activeCarrito, producto, 1);
+            carritoProductoService.createCarritoProducto(carritoProducto);
+//            carritoProducto.setCarritoProductoKey(carritoProductoKey);
+//            carritoProducto.setCarrito(activeCarrito);
+//            carritoProducto.setCantidad(1);
+
+        }
+
+
+
+//        Producto currentProducto = productoService.getProductoById(id);
+//        model.addAttribute("product", currentProducto);
+//        System.out.println("product add to cart: " + currentProducto);
+        return "redirect:/cart";
+    }
+
+
+
+
     @RequestMapping("/about")
     public String About(Model model){
         model.addAttribute("about");
@@ -137,11 +236,7 @@ public class AppWeb {
         model.addAttribute("prodsingle");
         return "page/product-single";
     }
-    @RequestMapping("cart")
-    public String Cart(Model model){
-        model.addAttribute("cart");
-        return "page/cart";
-    }
+
     @RequestMapping("/checkout")
     public String Checkout(Model model){
         model.addAttribute("checkout");

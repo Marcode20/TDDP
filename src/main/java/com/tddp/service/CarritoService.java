@@ -11,4 +11,5 @@ public interface CarritoService {
     List<Carrito> GetCarritoALL();
     Carrito GetCarritoById(Integer carrito_id);
     void deleteCarrito(Integer carrito_id);
+    Carrito findActiveCarrito();
 }

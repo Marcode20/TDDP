@@ -21,7 +21,7 @@ public class CarritoProducto {
     @JoinColumn(name = "carrito_id")
     private Carrito carrito;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("producto_id")
     @JoinColumn(name = "producto_id")
     private Producto producto;

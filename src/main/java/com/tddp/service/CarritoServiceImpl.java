@@ -49,4 +49,9 @@ public class CarritoServiceImpl implements CarritoService{
             throw  new ResourceNotFoundException("Error:" + carrito_id);
         }
     }
+
+    @Override
+    public Carrito findActiveCarrito() {
+        return carritoRepository.findActiveCarrito();
+    }
 }

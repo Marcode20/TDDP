@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -41,5 +42,8 @@ public class Producto {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "marca_id")
     private Marca marca;
+
+    @OneToMany(mappedBy = "producto")
+    private List<CarritoProducto> carritoProducto;
 
 }
