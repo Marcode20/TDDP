@@ -28,6 +28,8 @@ public class CategoriaController {
         return "/admin/categoria";
     }
 
+
+
     @GetMapping("/admin/categoria/add")
     public String categoriaAdd(Model model){
         model.addAttribute("categoria", new Categoria());

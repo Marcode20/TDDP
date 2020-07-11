@@ -1,8 +1,10 @@
 package com.tddp.controller;
 
 
+import com.tddp.model.Categoria;
 import com.tddp.model.Producto;
 import com.tddp.service.AWSS3Service;
+import com.tddp.service.CategoriaService;
 import com.tddp.service.FileService;
 import com.tddp.service.ProductoService;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -23,14 +27,15 @@ public class ProductController {
 
     final
     ProductoService ProductoService;
-
+    CategoriaService categoriaService;
     final
     AWSS3Service awss3Service;
 
     final FileService fileService;
 
-    public ProductController(ProductoService ProductoService, AWSS3Service awss3Service, FileService fileService) {
+    public ProductController(ProductoService ProductoService,CategoriaService categoriaService, AWSS3Service awss3Service, FileService fileService) {
         this.ProductoService = ProductoService;
+        this.categoriaService = categoriaService;
         this.awss3Service = awss3Service;
         this.fileService = fileService;
     }
@@ -41,6 +46,7 @@ public class ProductController {
         //model.addAttribute("productnew", new Producto());
         return "admin/producto" ;
     }
+
 
     @GetMapping("/admin/producto/edit/{id}")
     public String editProducto(@PathVariable Integer id, Model model){
@@ -68,9 +74,12 @@ public class ProductController {
 
     @GetMapping("/admin/producto/add")
     public String productoAdd(Model model){
+        model.addAttribute("listacategoria",categoriaService.getCategoriaAll());
         model.addAttribute("producto", new Producto());
         return "admin/producto-add";
     }
+
+
     @PostMapping("/admin/producto/save")
     public String productoSave(Producto producto, @RequestParam("file") MultipartFile multipartfile){
         try {
