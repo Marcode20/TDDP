@@ -58,17 +58,17 @@
                             <input type="file" class="form-control" id="File" aria-describedby="File"
                                    placeholder="Inserte Imagen" multiple="multiple" name="file">
                         </tr>
-<!--                        <tr>-->
-<!--                            <div class="form-group row">-->
-<!--                            <label  class="col-form-label">Categoria </label>-->
-<!--                                <select th:field="*{categoria}">-->
-<!--                                    <option th:each="list : ${listacategoria}"-->
-<!--                                            th:value="${list.categoria_id}"-->
-<!--                                            th:text="${list.nombre}"></option>-->
+                        <tr>
+                            <div class="form-group row">
+                            <label  class="col-form-label">Categoria </label>
+                                <select th:field="*{categoria.nombre}">
+                                    <option th:each="list : ${listacategoria}"
+                                            th:value="${list.categoria_id}"
+                                            th:text="${list.nombre}"></option>
 
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                        </tr>-->
+                                </select>
+                            </div>
+                        </tr>
 
 
                         <tr class="pt-2">

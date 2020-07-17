@@ -43,7 +43,7 @@ public class ProductController {
     @GetMapping("/admin/producto")
     public String getAllProducto(Model model){
         model.addAttribute("listaProducto", ProductoService.getProductoall());
-        //model.addAttribute("productnew", new Producto());
+        model.addAttribute("productnew", new Producto());
         return "admin/producto" ;
     }
 
