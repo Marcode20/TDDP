@@ -4,6 +4,8 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.sqs.AmazonSQS;
@@ -56,6 +58,22 @@ public class AmazonConfig {
 
         return sqsClient;
     }
+
+    @Bean
+    public AmazonDynamoDB AmazonDynamoDBS(){
+        final AWSCredentials credentials = new BasicAWSCredentials(accessKeyId,
+                secretAccessKey);
+        AmazonDynamoDB dynamoDBClient = AmazonDynamoDBClientBuilder
+                .standard()
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .withRegion(Regions.US_WEST_1)
+                .build();
+
+        return dynamoDBClient;
+    }
+
+
+
 
 
 }
