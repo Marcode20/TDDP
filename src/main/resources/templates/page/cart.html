@@ -12,42 +12,79 @@
 				<div class="row">
     			<div class="col-md-12 ftco-animate" >
     				<div class="cart-list">
-	    				<table class="table">
-						    <thead class="thead-primary">
-						      <tr class="text-center">
-						        <th>Option</th>
-						        <th>Image</th>
-						        <th>Product name</th>
-						        <th>Price</th>
-						        <th>Quantity</th>
-						        <th>Total</th>
-						      </tr>
-						    </thead>
-						    <tbody >
-						      <tr class="text-center" th:each="producto: ${productList}">
-						        <td class="product-remove"><a href="#">Delete</a></td>
-						        
-						        <td class="image-prod">
-<!--									<div class="img" th:style="'background-image:url(/images/product3.png);'"></div>-->
-								  <img th:src="${producto.productImageURL}" width="110" height="80" />
+<!--	    				<table class="table">-->
+<!--						    <thead class="thead-primary">-->
+<!--						      <tr class="text-center">-->
+<!--						        <th>Option</th>-->
+<!--						        <th>Image</th>-->
+<!--						        <th>Product name</th>-->
+<!--						        <th>Price</th>-->
+<!--						        <th>Quantity</th>-->
+<!--						        <th>Total</th>-->
+<!--						      </tr>-->
+<!--						    </thead>-->
+<!--						    <tbody >-->
+<!--						      <tr class="text-center" th:each="producto: ${productList}">-->
+<!--						        <td class="product-remove"><a href="#">Delete</a></td>-->
+<!--						        -->
+<!--						        <td class="image-prod">-->
+<!--&lt;!&ndash;									<div class="img" th:style="'background-image:url(/images/product3.png);'"></div>&ndash;&gt;-->
+<!--								  <img th:src="${producto.productImageURL}" width="110" height="80" />-->
+<!--								</td>-->
+<!--						        -->
+<!--						        <td class="product-name">-->
+<!--						        	<h3 th:text="${producto.nombre}"></h3>-->
+<!--						        </td>-->
+<!--						        -->
+<!--						        <td class="price" th:text="${producto.precio}"></td>-->
+<!--						        -->
+<!--						        <td class="quantity">-->
+<!--						        	<div class="input-group mb-3">-->
+<!--					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">-->
+<!--					          	</div>-->
+<!--					          </td>-->
+<!--						        -->
+<!--						        <td class="total" th:text="${producto.precio}"></td>-->
+<!--						      </tr>&lt;!&ndash; END TR&ndash;&gt;-->
+<!--						    </tbody>-->
+<!--						  </table>-->
+						<table class="table">
+							<thead class="thead-primary">
+							<tr class="text-center">
+								<th>Option</th>
+								<th>Image</th>
+								<th>Product name</th>
+								<th>Price</th>
+								<th>Quantity</th>
+								<th>Total</th>
+							</tr>
+							</thead>
+							<tbody >
+							<tr class="text-center" th:each="carritoProducto: ${session.cart}">
+								<td class="product-remove"><a th:href="${'/carritoProducto/producto/delete/' + carritoProducto.producto.producto_id}">Delete</a></td>
+
+								<td class="image-prod">
+									<!--									<div class="img" th:style="'background-image:url(/images/product3.png);'"></div>-->
+									<img th:src="${carritoProducto.producto.productImageURL}" width="110" height="80" />
 								</td>
-						        
-						        <td class="product-name">
-						        	<h3 th:text="${producto.nombre}"></h3>
-						        </td>
-						        
-						        <td class="price" th:text="${producto.precio}"></td>
-						        
-						        <td class="quantity">
-						        	<div class="input-group mb-3">
-					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-					          	</div>
-					          </td>
-						        
-						        <td class="total" th:text="${producto.precio}"></td>
-						      </tr><!-- END TR-->
-						    </tbody>
-						  </table>
+
+								<td class="product-name">
+									<h3 th:text="${carritoProducto.producto.nombre}"></h3>
+								</td>
+
+								<td class="price" th:text="${carritoProducto.producto.precio}"></td>
+
+
+								<td class="quantity">
+									<div class="input-group mb-3">
+										<input type="number" name="quantity" th:value="${carritoProducto.cantidad}" class="quantity form-control input-number"  >
+									</div>
+								</td>
+
+								<td class="total" th:text="${carritoProducto.producto.precio * carritoProducto.cantidad}"></td>
+							</tr><!-- END TR-->
+							</tbody>
+						</table>
 					  </div>
     			</div>
     		</div>

@@ -61,4 +61,14 @@ public class CarritoProductoServiceImpl implements  CarritoProductoService{
             throw new ResourceNotFoundException("Error:" + carritoProductoKey);
         }
     }
+
+    @Override
+    public Integer carritoProductoExists(Integer id, List<CarritoProducto> carritoProductoList) {
+        for (Integer i = 0; i < carritoProductoList.size(); i++){
+            if(carritoProductoList.get(i).getProducto().getProducto_id() == id){
+                return i;
+            }
+        }
+        return -1;
+    }
 }

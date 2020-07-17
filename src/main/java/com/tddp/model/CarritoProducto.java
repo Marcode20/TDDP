@@ -29,4 +29,8 @@ public class CarritoProducto {
 
     private Integer cantidad;
 
+    public CarritoProducto(Producto producto, Integer cantidad ) {
+        this.producto = producto;
+        this.cantidad = cantidad;
+    }
 }

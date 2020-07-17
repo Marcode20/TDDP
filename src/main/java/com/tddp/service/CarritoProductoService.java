@@ -14,4 +14,5 @@ public interface CarritoProductoService {
     List<CarritoProducto> GetCarritoProductoAll();
     CarritoProducto GetCarritoProductoById(CarritoProductoKey carritoProductoKey);
     void DeleteProducto(CarritoProductoKey carritoProductoKey);
+    Integer carritoProductoExists(Integer id, List<CarritoProducto> carritoProductoList);
 }

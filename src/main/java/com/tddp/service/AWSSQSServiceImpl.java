@@ -36,6 +36,7 @@ public class AWSSQSServiceImpl implements AWSSQSService {
     public void sendToQueue(String message, String s3ObjectKey) {
         MessageAttributeValue messageAttributeValue = new MessageAttributeValue();
         messageAttributeValue.setStringValue(s3ObjectKey);
+        messageAttributeValue.setDataType("String");
 
         SendMessageRequest smreq = new SendMessageRequest(SQS_URL, message);
         smreq.addMessageAttributesEntry("s3ObjectKey", messageAttributeValue);

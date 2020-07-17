@@ -170,53 +170,6 @@ public class AppWeb {
 //        return "redirect:/admin/producto";
 //    }
 
-    @GetMapping("/carritoProducto/producto/{id}")
-    public String saveCarritoProducto( @PathVariable Integer id){
-        //System.out.println("prd: " + producto);
-
-        LocalDateTime lt = LocalDateTime.now();
-        Carrito activeCarrito = carritoService.findActiveCarrito();
-        Producto producto = productoService.getProductoById(id);
-        System.out.println("prd: " + producto);
-        if(activeCarrito == null){
-
-            Carrito carrito = new Carrito();
-            carrito.setDate(lt);
-            carrito.setIsActive(1);
-            carritoService.createCarrito(carrito);
-
-
-
-            CarritoProductoKey carritoProductoKey = new CarritoProductoKey(carrito.getCarrito_id(), producto.getProducto_id());
-
-            CarritoProducto carritoProducto = new CarritoProducto(carritoProductoKey, carrito, producto, 1);
-//            carritoProducto.setProducto(producto);
-//            carritoProducto.setCarritoProductoKey(carritoProductoKey);
-//            carritoProducto.setCarrito(carrito);
-//            carritoProducto.setCantidad(1);
-            carritoProductoService.createCarritoProducto(carritoProducto);
-
-
-
-        }else{
-
-            CarritoProductoKey carritoProductoKey = new CarritoProductoKey(activeCarrito.getCarrito_id(), producto.getProducto_id());
-
-            CarritoProducto carritoProducto = new CarritoProducto(carritoProductoKey, activeCarrito, producto, 1);
-            carritoProductoService.createCarritoProducto(carritoProducto);
-//            carritoProducto.setCarritoProductoKey(carritoProductoKey);
-//            carritoProducto.setCarrito(activeCarrito);
-//            carritoProducto.setCantidad(1);
-
-        }
-
-
-
-//        Producto currentProducto = productoService.getProductoById(id);
-//        model.addAttribute("product", currentProducto);
-//        System.out.println("product add to cart: " + currentProducto);
-        return "redirect:/cart";
-    }
 
 
 

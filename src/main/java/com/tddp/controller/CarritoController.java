@@ -2,7 +2,9 @@ package com.tddp.controller;
 
 import com.tddp.model.Carrito;
 import com.tddp.model.CarritoProducto;
+import com.tddp.model.CarritoProductoKey;
 import com.tddp.model.Producto;
+import com.tddp.service.CarritoProductoService;
 import com.tddp.service.CarritoService;
 import com.tddp.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +25,10 @@ public class CarritoController {
 
     @Autowired
     CarritoService carritoService;
+    @Autowired
+    ProductoService productoService;
+    @Autowired
+    CarritoProductoService carritoProductoService;
 
 //    @GetMapping("/carrito")
 //    public String listCarrito(Model model){
@@ -80,6 +88,86 @@ public class CarritoController {
 
 
     }
+
+//    @GetMapping("/carritoProducto/producto/{id}")
+//    public String saveCarritoProducto( @PathVariable Integer id){
+//        //System.out.println("prd: " + producto);
+//
+//        LocalDateTime lt = LocalDateTime.now();
+//        Carrito activeCarrito = carritoService.findActiveCarrito();
+//        Producto producto = productoService.getProductoById(id);
+//        System.out.println("prd: " + producto);
+//        if(activeCarrito == null){
+//
+//            Carrito carrito = new Carrito();
+//            carrito.setDate(lt);
+//            carrito.setIsActive(1);
+//            carritoService.createCarrito(carrito);
+//            CarritoProductoKey carritoProductoKey = new CarritoProductoKey(carrito.getCarrito_id(), producto.getProducto_id());
+//
+//            CarritoProducto carritoProducto = new CarritoProducto(carritoProductoKey, carrito, producto, 1);
+//
+//            carritoProductoService.createCarritoProducto(carritoProducto);
+//        }else{
+//
+//            CarritoProductoKey carritoProductoKey = new CarritoProductoKey(activeCarrito.getCarrito_id(), producto.getProducto_id());
+//
+//            CarritoProducto carritoProducto = new CarritoProducto(carritoProductoKey, activeCarrito, producto, 1);
+//            carritoProductoService.createCarritoProducto(carritoProducto);
+//
+//        }
+//     return "redirect:/cart";
+//    }
+
+    @GetMapping("/carritoProducto/producto/{id}")
+    public String saveCarritoProducto(@PathVariable Integer id, Model model, HttpSession httpSession){
+        //System.out.println("prd: " + producto);
+        if(httpSession.getAttribute("cart") == null){
+            List<CarritoProducto> cart = new ArrayList<CarritoProducto>();
+            cart.add(new CarritoProducto(productoService.getProductoById(id), 1));
+            httpSession.setAttribute("cart", cart);
+
+        }else{
+            List<CarritoProducto> cart = (List<CarritoProducto>) httpSession.getAttribute("cart");
+            int productExistsPosition = carritoProductoService.carritoProductoExists(id, cart);
+            if (productExistsPosition == -1){
+                cart.add(new CarritoProducto(productoService.getProductoById(id), 1));
+            }else {
+                int quantity = cart.get(productExistsPosition).getCantidad() + 1;
+                cart.get(productExistsPosition).setCantidad(quantity);
+            }
+            httpSession.setAttribute("cart", cart);
+        }
+
+        return "redirect:/cart";
+    }
+
+    @GetMapping("/carritoProducto/producto/delete/{id}")
+    public String deleteCarritoProducto(@PathVariable Integer id, HttpSession httpSession){
+
+            List<CarritoProducto> cart = (List<CarritoProducto>) httpSession.getAttribute("cart");
+            int productExistsPosition = carritoProductoService.carritoProductoExists(id, cart);
+            cart.remove(productExistsPosition);
+
+            httpSession.setAttribute("cart", cart);
+
+
+        return "redirect:/cart";
+    }
+
+    @GetMapping("/carritoProducto/producto/update/{id}")
+    public String updateCarritoProducto(@PathVariable Integer id, HttpSession httpSession){
+
+        List<CarritoProducto> cart = (List<CarritoProducto>) httpSession.getAttribute("cart");
+        int productExistsPosition = carritoProductoService.carritoProductoExists(id, cart);
+        cart.remove(productExistsPosition);
+
+        httpSession.setAttribute("cart", cart);
+
+
+        return "redirect:/cart";
+    }
+
 
 
 }
